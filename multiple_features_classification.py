@@ -12,7 +12,9 @@ import matplotlib.pyplot as plt
 class MultipleFeatures:
     def __init__(self, training_data = None, test_data = None):
         """
-        Has some default data to run tests. Custom added data has to be of the same format.
+        Has some default data to run tests. Custom added data has to be of the same format:
+        first 2 entries of a data element are the 2 features, while 3rd entry is the class 
+        it belongs to (either 0 or 1).
 
         """
         if training_data is None:
