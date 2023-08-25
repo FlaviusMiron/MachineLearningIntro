@@ -1,8 +1,20 @@
+"""
+Script for visualizing a 2-feature (without the default), 2 class classification.
+Inspired by Sebastian Lague's video on creating Neural Networks: https://www.youtube.com/watch?v=hfMk-kjRv4c&t=777s
+Uses logistic regression to classify the 2 "fruits" based on the features.
+I will also implement a neural network approach soon.
+
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
 class MultipleFeatures:
     def __init__(self, training_data = None, test_data = None):
+        """
+        Has some default data to run tests. Custom added data has to be of the same format.
+
+        """
         if training_data is None:
             self.training_data = [
                 [1,1,0],[1,2,0],[1,3,0],
@@ -32,9 +44,15 @@ class MultipleFeatures:
                               [4.5,1.8,0],[2.5,3.8,0]]
             
         self.thetas = np.random.randn(1,3)
+        self.default_parameter_test = False
+        self.default_parameter_train = False
 
 
     def plot_training_data(self):
+        if self.default_parameter_train:
+            self.remove_default_parameter(self.training_data)
+            self.default_parameter_train = False
+
         for point in self.training_data:
             if point[2]:
                 plt.plot(point[0], point[1], marker="o", markersize=10, 
@@ -44,6 +62,10 @@ class MultipleFeatures:
                           markerfacecolor="green", markeredgecolor="green")
 
     def plot_test_data(self):
+        if self.default_parameter_test:
+            self.remove_default_parameter(self.test_data)
+            self.default_parameter_test = False
+
         for point in self.test_data:
             if point[2]:
                 plt.plot(point[0], point[1], marker="o", markersize=10,
@@ -53,6 +75,9 @@ class MultipleFeatures:
                           markerfacecolor="green", markeredgecolor="blue")
                 
     def logistic_regression(self, epochs = 15, learning_rate = 0.01):
+        if not self.default_parameter_train:
+            self.add_default_parameter(self.training_data)
+            self.default_parameter_train = True
 
         nabla_thetas = np.zeros((1,3))
         
@@ -75,7 +100,15 @@ class MultipleFeatures:
         for item in data:
             item.insert(2,1)
 
+    def remove_default_parameter(self, data):
+        for item in data:
+            item.pop(2)
+
     def predict_test_data(self):
+        if not self.default_parameter_test:
+            self.add_default_parameter(self.test_data)
+            self.default_parameter_test = True
+
         guessed_right = 0
         for point in self.test_data:
             x = point[0]
@@ -96,12 +129,11 @@ class MultipleFeatures:
 
         return "Accuracy on test data: "+str(guessed_right/len(self.test_data)*100)+"%"
 
+
 model = MultipleFeatures()
+
 model.plot_training_data()
 model.plot_test_data()  
-
-model.add_default_parameter(model.training_data)
-model.add_default_parameter(model.test_data)
 
 model.logistic_regression(epochs=90, learning_rate=0.5)
 print(model.predict_test_data())
