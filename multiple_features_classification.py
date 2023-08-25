@@ -84,7 +84,7 @@ class MultipleFeatures:
         nabla_thetas = np.zeros((1,3))
         
         for epoch in range(epochs):
-            
+            #Here we calculate the partial derivatives of the log-likelihood with respect to each parameter x, y and z
             nabla_thetas[0][0] = sum([ (prediction - self.sigmoid(np.matmul(self.thetas,np.array([x,y,z]))))*(-x) 
                                 for x,y,z,prediction in self.training_data])
             nabla_thetas[0][1] = sum([ (prediction - self.sigmoid(np.matmul(self.thetas,np.array([x,y,z]))))*(-y) 
@@ -92,7 +92,7 @@ class MultipleFeatures:
             nabla_thetas[0][2] = sum([ (prediction - self.sigmoid(np.matmul(self.thetas,np.array([x,y,z]))))*(-z) 
                                 for x,y,z,prediction in self.training_data])
 
-    
+            #Here we update the gradient descent algorithm with the partial derivatives calculated above
             self.thetas = [t-learning_rate*n_t for t,n_t in zip(self.thetas, nabla_thetas)]
 
     def sigmoid(self, input):
@@ -107,6 +107,7 @@ class MultipleFeatures:
             item.pop(2)
 
     def predict_test_data(self):
+        """ Method used to evaluate the model. """
         if not self.default_parameter_test:
             self.add_default_parameter(self.test_data)
             self.default_parameter_test = True
@@ -126,10 +127,10 @@ class MultipleFeatures:
             if correct_value == prediction:
                 guessed_right +=1
             else:
-                print("Inorrect point: (",x,",",y,end=" ) - ")
+                print("Inorrect point: ( {} , {} ) - ".format(x,y),end = "")
                 print("Correct value: {}. Prediction : {}.".format(correct_value,prediction))
 
-        return "Accuracy on test data: "+str(guessed_right/len(self.test_data)*100)+"%"
+        return "Accuracy on test data: {}%".format(guessed_right / len(self.test_data) * 100)
 
 
 model = MultipleFeatures()
