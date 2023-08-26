@@ -3,6 +3,7 @@ Script for visualizing a 2-feature (without the default), 2 class classification
 Inspired by Sebastian Lague's video on creating Neural Networks: https://www.youtube.com/watch?v=hfMk-kjRv4c&t=777s
 Uses logistic regression to classify the 2 "fruits" based on the features.
 I will also implement a neural network approach soon.
+In the grapths plotted, the class of "x"s is reffered as being of class 0 while the class of circles class 1.
 
 """
 
@@ -160,7 +161,7 @@ class Logistic_Regression:
                 print("Inorrect point: ( {} , {} ) - ".format(x,y),end = "")
                 print("Correct value: {}. Prediction : {}.".format(correct_value,prediction))
 
-        return "Accuracy on test data: {}% with logistic regression.".format(guessed_right / len(self.test_data) * 100)
+        print("Accuracy on test data: {}% with logistic regression.".format(guessed_right / len(self.test_data) * 100))
     
     def plot_cost_function(self):
         plt.figure()
@@ -327,7 +328,7 @@ class Neural_Network:
                 print("Incorrect point: ( {} , {} ) - ".format(x,y),end = "")
                 print("Correct value: {}. Prediction : {}.".format(correct_value,prediction))
 
-        return "Accuracy on test data: {}% with neural network.".format(guessed_right / len(self.test_data) * 100)
+        print("Accuracy on test data: {}% with neural network.".format(guessed_right / len(self.test_data) * 100))
 
     def plot_cost_function(self):
         plt.figure()
@@ -344,11 +345,11 @@ def main():
     
     model1.logistic_regression(epochs=300, learning_rate=0.1) # To remove the oscillasions in the cost graph,
     # one can increase the trainig epochs and decrease the learning rate proportionally, at the cost of training time
-    print(model1.predict_test_data())
+    model1.predict_test_data()
     model1.plot_cost_function()
     
     # model2.finite_differences_gradient(epochs= 5000, learning_rate = 1) 
-    # print(model2.predict_test_data())
+    # model2.predict_test_data()
     # model2.plot_cost_function()
 if __name__ == "__main__":
     main()
