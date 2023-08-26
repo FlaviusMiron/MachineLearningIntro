@@ -1,8 +1,7 @@
 """
 Script for visualizing a 2-feature (without the default), 2 class classification.
 Inspired by Sebastian Lague's video on creating Neural Networks: https://www.youtube.com/watch?v=hfMk-kjRv4c&t=777s
-Uses logistic regression to classify the 2 "fruits" based on the features.
-I will also implement a neural network approach soon.
+Uses either logistic regression or a rudimental neural network to classify the 2 "fruits" based on the features.
 In the grapths plotted, the class of "x"s is reffered as being of class 0 while the class of circles class 1.
 
 """
