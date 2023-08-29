@@ -232,7 +232,11 @@ class Neural_Network:
                           markerfacecolor="blue", markeredgecolor="blue")
             
     def finite_differences_gradient(self, sizes=[2,3,2] ,epochs=10, learning_rate=0.25):
-        """Train the network with the finite differences gradient method."""
+        """
+        Train the network with the finite differences gradient method.
+        Note that this approach, even if it more intuitive, was implemented just for educational purposes, as backpropagation should be used to train the network instead.
+        The approach that I used here is extremely inefficient, therefore requires a lot of training epochs, and it is not always reliable.
+        """
 
         self.__format_data(self.training_data)
         self.costs = []
