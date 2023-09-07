@@ -1,8 +1,7 @@
 """
 Script for visualising logistic regression on a small data set, for single feature classification.
-The black line repressets the initial guess sigmoid, and it gets bluer for each learning iteration of the algorithm.
-The final sigmoid thath the algorithm learns is the red one.
-
+The black line repressets the initial guess sigmoid cumulatice probability distribution, and it gets bluer for each learning iteration of the algorithm.
+The final sigmoid that the algorithm learns is the red one.
 """
 import numpy as np
 from matplotlib import pyplot as plt
