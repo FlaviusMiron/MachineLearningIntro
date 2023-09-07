@@ -41,12 +41,12 @@ class linear_regression():
         line will be found before the last line learned.
         """
         costs = []
-        self.weigth_s = []
+        self.weigth_s = [] # Stores all the parameters here
         self.bias_s = []
 
         self.plot_points()
 
-        i=0
+        i=0 # Used for plotting, has nothing to do with the algorithm
         lenght_training_data = len(self.points)
 
         
@@ -100,7 +100,7 @@ class linear_regression():
 
             print("Batch cost:",cost_function,"on ineration",i)
 
-            if i == (epochs - 1):
+            if i == (epochs - 1): # Plot related logic
                 self.last_plot = True
 
         print("w=",self.weigth,"b=" ,self.bias)
@@ -137,7 +137,7 @@ class linear_regression():
 
 
             print("Locally weighted cost:",cost_function,"on ineration",i)
-            if i == (epochs - 1):
+            if i == (epochs - 1): # Plot related logic
                 self.last_plot = True
 
         print("a=",self.weigth,"b=" ,self.bias)
@@ -146,7 +146,13 @@ class linear_regression():
 
     
     def normal_ecuations_cost(self):
-        """Computes the theoretical minimum of the cost function, then returns the cost function' s value for that minimum"""
+        """
+        Each linear regression algorithm has a fixed mathematical optimal parameters solution that mainimazes the cost function, known as the theoretical minima.
+        It is found through the so called "normal equations", which i implemented here. I implemented this variant mainly to compare the performance of the algorithms
+        to the maximum theoretical performance that could be achieved. Wether this equations should be used instead of a machine learning model depends of the lenght of
+        the training data.
+        """
+
         n = len(self.points)
         row_1 = np.ones((1,n))
 
@@ -168,6 +174,7 @@ class linear_regression():
 
 
     def plot_linear_regression(self,id ,epochs = None):
+        """Method used by the models to plot subsequent lines."""
         global i
 
         self.color_values = self.generate_colors(id,epochs)
