@@ -235,14 +235,14 @@ class Neural_Network:
     def finite_differences_gradient(self, sizes=[2,3,2] ,epochs=10, learning_rate=0.25):
         """
         Train the network with the finite differences gradient method.
-        Note that this approach, even if it more intuitive, was implemented just for educational purposes, as backpropagation should be used to train the network instead.
-        The approach that I used here is extremely inefficient, therefore requires a lot of training epochs, and it is not always reliable.
+        Note that this approach, even if it is more intuitive, was implemented just for educational purposes, as backpropagation should be used to train the network instead.
+        The approach that I used here is extremely inefficient, therefore requires a lot of training epochs, and it is not usually reliable.
         """
 
         self.__format_data(self.training_data)
         self.costs = []
 
-        h = 0.0001 # A small change in the parmatere
+        h = 0.0001 # A small change in the parmaters
 
         self.w = [np.random.randn(n,m) for n,m in zip(sizes[1:],sizes[:-1])]
         self.b = [np.random.randn(n,1) for n in sizes[1:]]
