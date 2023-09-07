@@ -93,7 +93,8 @@ class Logistic_Regression:
         nabla_thetas = np.zeros((1,3))
         
         for epoch in range(epochs):
-            #Here we calculate the partial derivatives of the log-likelihood with respect to each parameter x, y and z
+            # Here we calculate the partial derivatives of the log-likelihood with respect to each parameter x, y and z
+            # Uses batch gradient descent, that is usually slow, but since the data set is small, it works.
             nabla_thetas[0][0] = sum([ (prediction - self.__sigmoid(np.matmul(self.thetas,np.array([x,y,z]))))*(-x) 
                                 for x,y,z,prediction in self.training_data])
             nabla_thetas[0][1] = sum([ (prediction - self.__sigmoid(np.matmul(self.thetas,np.array([x,y,z]))))*(-y) 
