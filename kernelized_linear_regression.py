@@ -1,5 +1,5 @@
 """
-Script that implements kernelized logistic regression. Meant to use for experimentation, the  "main" part provides
+Script that implements kernelized linear regression. Meant to use for experimentation, the  "main" part provides
 different tests with different kernel functions. Custom added kernel functions can be used, as long as they folow the format:
 they must have 2 parameters, x and x, being column vectors, and returna single value, which is the kernel function evaluated
 for the 2 vectors.
