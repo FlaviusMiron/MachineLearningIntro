@@ -80,14 +80,11 @@ class SVM:
 
         # Defining and solving the optimization problem
 
-        w = cvxpy.Variable((len_features, 1))
+        w = cvxpy.Variable((len_features, 1)) # The 2 variables we are optimizing for, vector w and scalar b
         b = cvxpy.Variable()
 
         objective = cvxpy.Minimize(cvxpy.sum_squares(w))
 
-        print("Yvakues",y_values[3][0])
-        print("xval",X_values[3].reshape(1,-1).shape)
-        print(w)
         constraints = [y_values[i][0] * (X_values[i, :].reshape(1,-1) @ w + b) >= 1 for i in range(len_data)]
 
         problem = cvxpy.Problem(objective, constraints)
