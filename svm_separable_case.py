@@ -64,7 +64,7 @@ class SVM:
     def fit(self):
         """Solves the optimization problem to get the optimal values for w and b"""
 
-        # Reformatting data to a format that is usable by the solver, meaning labels in an array and data in a vector
+        # Reformatting data to a format that is usable by the solver, meaning data in an array and lables in a vector
 
         len_data, len_features = self.training_data.shape
 
